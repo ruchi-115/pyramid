@@ -1,6 +1,6 @@
 import { Box, OrbitControls, Plane, Sphere, useCubeTexture } from "@react-three/drei";
 import React from "react";
-import { useRef, useLayoutEffect, useState, useCallback } from 'react'
+import { useRef, useLayoutEffect, useMemo, useState, useCallback } from 'react'
 import * as THREE from 'three';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics, useBox, usePlane } from "@react-three/cannon";
@@ -9,6 +9,7 @@ import { extend, useLoader } from "@react-three/fiber";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import inter from "../public/Inter_Regular.json";
+import { Leva, useControls } from "leva";
 
 extend({ TextGeometry });
 
@@ -24,7 +25,7 @@ function PhyPlane({ color, ...props }) {
 }
 
 function PhyBox({ letter, ...props }) {
-    const [ref, api] = useBox(() => ({ args: [1, 1, 1], mass: 1, ...props }));
+    const [ref, api] = useBox(() => ({ mass: 1, ...props }));
     const font = new FontLoader().parse(inter);
     return (
         <>
@@ -55,7 +56,7 @@ function PhyBox({ letter, ...props }) {
 function Plan() {
 
     return (
-        <Canvas camera={{ position: [0, 5, 10], fov: 40 }}>
+        <Canvas camera={{ position: [0, 10, 30], fov: 40 }}>
             <Physics gravity={[0, -20, 0]}>
                 <PhyPlane
                     color="hotpink"
@@ -69,25 +70,31 @@ function Plan() {
                 {/* <PhyBox position={[-2, 0, -5]} /> */}
                 {/* <Text position={[-2, 0, -5]} /> */}
 
+
+                <group name="triangle">
+                    <Triangle position={[0, 0, 0]} color={'goldenrod'} />
+                    <Triangle position={[-2, 0, 2]} color={'goldenrod'} />
+                    <Triangle position={[-4, 0, 4]} color={'goldenrod'} />
+                    <Triangle position={[0, 0, 4]} color={'goldenrod'} />
+                    <Triangle position={[-2, 0, 6]} color={'goldenrod'} />
+                    <Triangle position={[2, 0, 6]} color={'goldenrod'} />
+                    <Triangle position={[0, 0, 8]} color={'goldenrod'} />
+                    <Triangle position={[2, 0, 2]} color={'goldenrod'} />
+                    <Triangle position={[4, 0, 4]} color={'goldenrod'} />
+                    {/* TOP */}
+                    <Triangle position={[0, 4, 2]} color={'blue'} />
+                    <Triangle position={[2, 4, 4]} color={'blue'} />
+                    <Triangle position={[0, 4, 6]} color={'blue'} />
+                    <Triangle position={[-2, 4, 4]} color={'blue'} />
+                    <InvertedTriangle position={[0, 4, 4]} color={'goldenrod'} />
+                    {/* top 2 */}
+                    <Triangle position={[0, 8, 4]} color={'goldenrod'} />
+                </group>
+                <InvertedTriangle position={[2, 0, 4]} color={'goldenrod'} />
+                <InvertedTriangle position={[0, 0, 6]} color={'goldenrod'} />
+                <InvertedTriangle position={[-2, 0, 4]} color={'goldenrod'} />
+                <InvertedTriangle position={[0, 0, 2]} color={'goldenrod'} />
             </Physics>
-            <group name="triangle">
-                <Triangle position={[0, 0, 0]} color={'goldenrod'} />
-                <Triangle position={[-2, 0, 2]} color={'green'} />
-                <Triangle position={[-4, 0, 4]} color={'purple'} />
-                <Triangle position={[0, 0, 4]} color={'hotpink'} />
-                <Triangle position={[-2, 0, 6]} color={'lightblue'} />
-                <Triangle position={[2, 0, 6]} color={'grey'} />
-                <Triangle position={[0, 0, 8]} color={'indigo'} />
-                <Triangle position={[2, 0, 2]} color={'red'} />
-                <Triangle position={[4, 0, 4]} color={'black'} />
-                {/* TOP */}
-                <Triangle position={[0, 3, 2]} color={'blue'} />
-                <Triangle position={[2, 3, 4]} color={'blue'} />
-                <Triangle position={[0, 3, 6]} color={'blue'} />
-                <Triangle position={[-2, 3, 4]} color={'blue'} />
-                {/* top 2 */}
-                <Triangle position={[0, 6, 4]} color={'goldenrod'} />
-            </group>
             {/* <Icosahedron /> */}
             <ambientLight intensity={0.3} />
             <pointLight intensity={0.8} position={[5, 0, 5]} />
@@ -111,18 +118,57 @@ function Icosahedron() {
 
 // Triangle
 function Triangle({ position, color, ...props }) {
-    // const [ref, api] = useBox(() => ({ position: position, mass: 5, ...props }));
-    const ref = useRef();
+    const [ref, api] = useBox(() => ({ position: position, args: [2, 4, 2], mass: 1, ...props }));
+    // const ref = useRef();
     const texture = useCubeTexture(
         ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
         { path: '/triangle/' }
     );
 
+    // useFrame(() => (ref.current.rotation.z = 180));
+
+
     return (
         <>
-            <mesh castShadow ref={ref} position={position}>
+            <mesh castShadow ref={ref} position={position} onClick={() => api.applyImpulse([0, 0, -55], [0, 0, 0])} >
                 {/* <pointLight position={[-3, -5, -20]} /> */}
-                <coneGeometry attach='geometry' args={[2, 3, 4]} />
+                <coneGeometry attach='geometry' args={[2, 4, 4]} rotation={90} />
+                <meshStandardMaterial attach="material" clearcoat={0.3} envMap={texture} metalness={1} roughness={0} toneMapped={false} color={color} />
+                {/* <meshPhysicalMaterial clearcoat={0.3} clearcoatRoughness={0} transmission={0.5} thickness={0.9} roughness={0} toneMapped={false} metalness={1} attach='material' color={"black"} /> */}
+            </mesh>
+        </>
+    )
+
+}
+function InvertedTriangle({ position, color, ...props }) {
+    const [ref, api] = useBox(() => ({ position: position, rotation: [3.15, 0, 0], args: [2, 4, 2], mass: 1, ...props }));
+    // const ref = useRef();
+    const { rotation } = useControls({
+        rotation: {
+            rotateX: 3.14,
+        }
+    });
+    const texture = useCubeTexture(
+        ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
+        { path: '/triangle/' }
+    );
+    const options = useMemo(() => {
+        return {
+            x: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
+            y: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
+            z: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
+            visible: true,
+            color: { value: 'lime' },
+        }
+    }, [])
+    // const p = useControls(options)
+
+
+    return (
+        <>
+            <mesh castShadow ref={ref} position={position} rotation={[3.15, 0, 0]} onClick={() => api.applyImpulse([0, 0, -55], [0, 0, 0])} >
+                {/* <pointLight position={[-3, -5, -20]} /> */}
+                <coneGeometry attach='geometry' args={[2, 4, 4]} />
                 <meshStandardMaterial attach="material" clearcoat={0.3} envMap={texture} metalness={1} roughness={0} toneMapped={false} color={color} />
                 {/* <meshPhysicalMaterial clearcoat={0.3} clearcoatRoughness={0} transmission={0.5} thickness={0.9} roughness={0} toneMapped={false} metalness={1} attach='material' color={"black"} /> */}
             </mesh>
