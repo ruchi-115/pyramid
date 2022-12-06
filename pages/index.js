@@ -17,6 +17,7 @@ import Pyramid from '../components/Pyramid'
 import InvertedPyramid from '../components/InvertedPyramid'
 import Title from '../components/Title';
 import Mirror from '../components/Mirror';
+import PC from '../components/Pc';
 
 const Plane = ({ color, ...props }) => {
   // const [ref] = usePlane(() => ({ ...props }));
@@ -98,6 +99,7 @@ export default function Home(props) {
   return (
     <>
       <Canvas shadows camera={{ position: [-2, 5, 25], fov: 50 }} >
+        <PC scale={0.5} position={[-15, 2, -7]} rotation={[0, 11, 0]} />
         {/* <Scene /> */}
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         {/* <ambientLight intensity={1} color={"yellow"} /> */}
@@ -121,7 +123,7 @@ export default function Home(props) {
         <Title />
         <Mirror position={[-25, 8, 10]} rotation={[2.1, 2.12, 2]} scale={[10, 10, 0.1]} />
         <Mirror position={[-15, 20, 8]} rotation={[2.1, 8.12, 1]} scale={[9, 9, 0.1]} />
-        <Mirror position={[0, 22, 8]} rotation={[2.1, 5.12, 1]} scale={[10, 10, 0.1]} />
+        <Mirror position={[0, 20, 8]} rotation={[2.1, 5.12, 1]} scale={[10, 10, 0.1]} />
         <Mirror position={[10, 18, 12]} rotation={[1.1, 2.12, 7]} scale={[10, 10, 0.2]} />
         <Mirror position={[22, 15, 12]} rotation={[1.19, 4.78, 1]} scale={[10, 10, 0.2]} />
         <Mirror position={[12, 6, 11]} rotation={[1.19, 3.78, 3]} scale={[8, 8, 0.2]} />
@@ -131,10 +133,11 @@ export default function Home(props) {
         <group >
           <mesh position={[0, -2, 0]} >
             <Plane color="#30303f" scale={[50, 50, 0.2]} />
-            <Plane color="#30303f" rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
+            <Plane color="#30303f" wireframe={true} rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
+            <Text />
             <Physics gravity={[0, -20, 0]}>
               <PhyPlane color='#000000' rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} />
-              <Text position={[0, -5, 0]} />
+              {/* <PhyPlane color='#000000' rotation={[0, 0, 0]} position={[0, -2, 0]} /> */}
               {/* <Sphere position={[-2, 1, 7]} /> */}
               <group name="Pyramid">
                 <Pyramid position={[0, 0, 18]} color={'goldenrod'} />
@@ -191,8 +194,8 @@ export default function Home(props) {
           <Triangle position={[30, 3, -25]} />
           <Triangle position={[-30, 3, -25]} />
           {/* <Diamond position={[0, 1, -25]} /> */}
-          <Diamond position={[-15, 2, -15]} />
-          <Diamond position={[25, 0, -15]} />
+          {/* <Diamond position={[-15, 2, -15]} /> */}
+          {/* <Diamond position={[25, 0, -15]} /> */}
         </group>
         <OrbitControls />
       </Canvas>

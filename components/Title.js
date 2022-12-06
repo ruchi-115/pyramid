@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from '@react-three/drei'
 import { useControls } from 'leva'
 function Title() {
-    const { rotation } = useControls({ rotation: [0, 9.40, 0] })
+    // const { rotation } = useControls({ rotation: [0, 9.40, 0] })
 
     return (
         <>
@@ -20,7 +20,7 @@ function Title() {
                 RUCHITA
 
             </Text>
-            <Text
+            {/* <Text
                 position={[0, 10, -10]}
                 color={'white'}
                 fontSize={4}
@@ -30,14 +30,14 @@ function Title() {
                 textAlign={'left'}
                 anchorX="center"
                 anchorY="middle"
-                rotation={rotation}
+                rotation={[0, 9.40, 0]}
             >
                 {/* Writer */}
-                DEVELOPER
-                {/* Designer */}
+            {/* DEVELOPER */}
+            {/* Designer 
 
-            </Text>
-            <Text
+            </Text> */}
+            {/* <Text
                 position={[10, 14, -10]}
                 color={'white'}
                 fontSize={4}
@@ -47,14 +47,12 @@ function Title() {
                 textAlign={'left'}
                 anchorX="center"
                 anchorY="middle"
-                rotation={rotation}
+                rotation={[0, 9.40, 0]}
             >
                 Writer
-                {/* DEVELOPER */}
-                {/* Designer */}
 
-            </Text>
-            <Text
+            </Text> */}
+            {/* <Text
                 position={[-10, 5, -10]}
                 color={'white'}
                 fontSize={4}
@@ -64,14 +62,12 @@ function Title() {
                 textAlign={'left'}
                 anchorX="center"
                 anchorY="middle"
-                rotation={rotation}
+                rotation={[0, 9.40, 0]}
                 fontStyle="italic"
             >
-                {/* Writer */}
-                {/* DEVELOPER */}
                 Designer
 
-            </Text>
+            </Text> */}
         </>
     )
 }

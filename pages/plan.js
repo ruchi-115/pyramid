@@ -1,4 +1,4 @@
-import { Box, OrbitControls, Billboard, Html, MeshReflectorMaterial, useCubeTexture, Text, useCursor, RoundedBox } from "@react-three/drei";
+import { Box, OrbitControls, Float, Billboard, Html, useGLTF, MeshReflectorMaterial, useCubeTexture, Text, useCursor, RoundedBox } from "@react-three/drei";
 import React from "react";
 import { useRef, useLayoutEffect, useMemo, useState, useCallback } from 'react'
 import * as THREE from 'three';
@@ -11,6 +11,9 @@ import { TextGeometry, PlaneBufferGeometry } from "three/examples/jsm/geometries
 import inter from "../public/Inter_Regular.json";
 import { Leva, useControls } from "leva";
 import { Effects } from "../components/Effects";
+import { Cards } from "../components/Cards";
+import PC from "../components/Pc";
+
 
 extend({ TextGeometry });
 
@@ -86,12 +89,24 @@ function PhyBox({ letter, ...props }) {
     // );
 }
 
+
+
+
+
+
+
+
 function Plan() {
+    const font = new FontLoader().parse(inter);
     return (
         <>
             <Canvas shadows camera={{ position: [0, 10, 30], fov: 70 }}>
                 <color attach="background" args={['#151520']} />
                 <Effects />
+                <PC />
+
+                {/* <Cards /> */}
+
                 <Physics gravity={[0, 0, 0]}>
                     {/* <hemisphereLight intensity={0.5} /> */}
                     <directionalLight position={[0, 2, 5]} castShadow intensity={1} />
@@ -102,8 +117,8 @@ function Plan() {
                     rotation={[-Math.PI / 2, 0, 0]} /> */}
                     {/* <PhyPlane color="blue" position={[0, 0, 0]} /> */}
                     {/* <Plane color="#f4ae00" rotation-x={-Math.PI / 2} position-y={1} scale={[4.2, 1, 4]} /> */}
-                    <Mirror color="black" position-z={-5} scale={[50, 50, 1]} />
-                    <Mirror color="black" rotation-x={-Math.PI / 2} position-y={-2} position-z={0} scale={[50, 50, 0.2]} />
+                    {/* <Mirror color="black" position-z={-5} scale={[50, 50, 1]} /> */}
+                    {/* <Mirror color="black" rotation-x={-Math.PI / 2} position-y={-2} position-z={0} scale={[50, 50, 0.2]} /> */}
                     {/* {word.map((letter, index) => (
                     <PhyBox position={[-2 + { index }, 0, -5]} letter={letter} key={index} />
                 ))} */}
@@ -144,7 +159,7 @@ function Plan() {
                 <OrbitControls />
 
 
-                <mesh position={[5, 5, 5]} >
+                {/* <mesh position={[5, 5, 5]} >
                     <planeGeometry args={[10, 10, 10]} />
                     <MeshReflectorMaterial
                         resolution={1024}
@@ -167,11 +182,11 @@ function Plan() {
                     // normalScale={_normalScale}
                     // reflectorOffset={reflectorOffset}
                     />
-                </mesh>
-                <Text
+                </mesh> */}
+                {/* <Text
                     position={[0, 0, 15]}
                     color={'#EC2D2D'}
-                    fontSize={12}
+                    fontSize={4}
                     maxWidth={200}
                     lineHeight={1}
                     letterSpacing={0.02}
@@ -184,9 +199,20 @@ function Plan() {
                 >
                     LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT
 
-                </Text>
-
-
+                </Text> */}
+                {/* <Float
+                    position={[0, 1.1, 0]}
+                    floatingRange={[(10, 0), (0, 10)]}
+                    rotation={[Math.PI / 3.5, 0, 0]}
+                    rotationIntensity={(2, 4)}
+                    floatIntensity={(1, 2)}
+                    speed={(2, 5)}
+                >
+                    <mesh >
+                        <boxGeometry args={[2, 2, 2]} />
+                        <meshStandardMaterial wireframe color="white" />
+                    </mesh>
+                </Float> */}
             </Canvas >
         </>
     );

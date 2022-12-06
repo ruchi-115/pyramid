@@ -12,7 +12,9 @@ export default function Text() {
     return (
         <>
             <mesh castShadow>
-                {/* <PhyBox text="RUCHITA" position={[-10, 0, 10]} size="4" height="0.5" /> */}
+                {/* <PhyBox text="DEVELOPER" position={[20, 0, -20]} size="2" height="0.5" /> */}
+                {/* <PhyBox text="WRITER" position={[15, 0, -22]} size="2" height="0.5" /> */}
+                {/* <PhyBox text="DESIGNER" position={[10, 0, -25]} size="2" height="0.5" /> */}
                 {/* <PhyBox text="Web Dev" position={[3, 0, 10]} rotation={[5, 0, 0]} size="1.5" height="0.3" /> */}
             </mesh>
         </>
@@ -20,7 +22,7 @@ export default function Text() {
 }
 
 function PhyBox({ letter, text, size, height, ...props }) {
-    const [ref, api] = useBox(() => ({ args: [1, 1, 1], mass: 1, ...props }));
+    // const [ref, api] = useBox(() => ({ args: [1, 1, 1], mass: 1, ...props }));
     const texture = useCubeTexture(
         ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
         { path: '/triangle/' }
@@ -28,9 +30,10 @@ function PhyBox({ letter, text, size, height, ...props }) {
     const font = new FontLoader().parse(inter);
     return (
         <>
-            <mesh castShadow ref={ref} onClick={() => api.applyImpulse([0, 0, -14], [0, 0, 0])} >
+            {/* <mesh castShadow ref={ref} onClick={() => api.applyImpulse([0, 0, -14], [0, 0, 0])} > */}
+            <mesh castShadow>
                 <textGeometry args={[text, { font, size: size, height: height }]} />
-                <meshBasicMaterial attach='material' color='goldenrod' envMap={texture} reflectivity={1} />
+                <meshNormalMaterial attach='material' />
             </mesh>
 
         </>
