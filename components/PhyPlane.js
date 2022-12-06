@@ -9,8 +9,8 @@ function PhyPlane({ color, ...props }) {
     const [ref] = usePlane(() => ({ ...props }));
 
     return (
-        <Plane args={[100, 100]} ref={ref} receiveShadow>
-            <meshStandardMaterial color={color} />
+        <Plane args={[50, 50]} ref={ref} receiveShadow>
+            <meshStandardMaterial color={color} reflectivity={1} />
         </Plane>
     );
 }
