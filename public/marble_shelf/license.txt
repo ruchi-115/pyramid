@@ -1,0 +1,11 @@
+Model Information:
+* title:	Marble Shelf 2
+* source:	https://sketchfab.com/3d-models/marble-shelf-2-0c48aa1f33da4831b9fc991fdacdd08f
+* author:	Vilad (https://sketchfab.com/Vilad)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Marble Shelf 2" (https://sketchfab.com/3d-models/marble-shelf-2-0c48aa1f33da4831b9fc991fdacdd08f) by Vilad (https://sketchfab.com/Vilad) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

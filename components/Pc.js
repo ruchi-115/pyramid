@@ -21,7 +21,7 @@ export default function PC(props) {
           <group position={[-600, 1400, -100]} rotation={[-0.31, -1.51, -0.3]} scale={40}>
             <group rotation={[Math.PI / 2, 0, 0]} />
           </group>
-          <mesh geometry={nodes.Cylinder_Material001_0.geometry} material={materials['Material.001']} />
+          <mesh castShadow geometry={nodes.Cylinder_Material001_0.geometry} material={materials['Material.001']} />
           <mesh geometry={nodes.Cylinder001_Material001_0.geometry} material={materials['Material.001']} />
           <mesh geometry={nodes.Cube109_Material003_0.geometry} material={materials['Material.003']} />
           <mesh geometry={nodes.Sphere__0.geometry} material={materials.Sphere__0} />
@@ -145,7 +145,7 @@ export default function PC(props) {
           <mesh geometry={nodes.Cube111_Material006_0.geometry} material={materials.material_0} />
           <mesh geometry={nodes.Cube112_Material005_0.geometry} material={materials['Material.005']} />
           <mesh geometry={nodes.Keyboard_Body_Material_0.geometry} material={materials.Material} />
-          <mesh geometry={nodes.Cube_Material014_0.geometry} material={materials['Material.014']} />
+          <mesh geometry={nodes.Cube_Material014_0.geometry} material={materials['Material.014']} material-color="white" />
           <group position={[-1047.08, 39.86, 640.68]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.2, 0.17, 0.17]}>
             <mesh geometry={nodes.Torus__0.geometry} material={materials.Sphere__0} />
           </group>

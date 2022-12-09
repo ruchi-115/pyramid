@@ -4,7 +4,7 @@ import { Vector3 } from 'three'
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { useState, useRef, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useCursor, RoundedBox, Html, Shadow, Center, Stats, Points, PointMaterial, useCubeTexture, useTexture, SpotLight, useDepthBuffer, KeyboardControls } from '@react-three/drei'
+import { OrbitControls, useCursor, RoundedBox, Html, GradientTexture, Shadow, Center, Stats, Points, PointMaterial, useCubeTexture, useTexture, SpotLight, useDepthBuffer, KeyboardControls } from '@react-three/drei'
 import { Physics, useBox, usePlane } from "@react-three/cannon";
 import { useControls } from 'leva';
 import inter from "../public/Inter_Regular.json";
@@ -18,6 +18,8 @@ import InvertedPyramid from '../components/InvertedPyramid'
 import Title from '../components/Title';
 import Mirror from '../components/Mirror';
 import PC from '../components/Pc';
+import Shelf from '../components/Shelf';
+import Football from '../components/Football';
 
 const Plane = ({ color, ...props }) => {
   // const [ref] = usePlane(() => ({ ...props }));
@@ -95,12 +97,25 @@ function Projects(position) {
 }
 
 export default function Home(props) {
-
+  // const { args } = useControls('Args', { args: [30, 10] })
   return (
     <>
       <Canvas shadows camera={{ position: [-2, 5, 25], fov: 50 }} >
-        <PC scale={0.5} position={[-15, 2, -7]} rotation={[0, 11, 0]} />
+        <mesh position={[0, 0, -1]} rotation={[0, 9.40, 0]} scale={50}>
+          <planeGeometry />
+          <meshBasicMaterial metalness={1} reflectivity={1}>
+            <GradientTexture
+              stops={[0, 0.5, 1]} // As many stops as you want
+              colors={['black', '#3E3E42', 'black']} // Colors need to match the number of stops
+              size={1024} // Size is optional, default = 1024
+            />
+          </meshBasicMaterial>
+        </mesh>
+        <PC castShadow scale={0.5} position={[-15, 3, -7]} rotation={[0, 11, 0]} />
+        <Shelf castShadow position={[26, -4, 2]} rotation={[0, Math.PI * 3, 0]} />
+        <Football scale={0.05} position={[-10, -2.5, -4]} />
         {/* <Scene /> */}
+        {/* <gridHelper args={args} position={[0, 14, -1]} rotation={[Math.PI / 2, 0, 0]} height={50} /> */}
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         {/* <ambientLight intensity={1} color={"yellow"} /> */}
         <pointLight position={[-10, 5, -15]} intensity={1} castShadow />
@@ -133,12 +148,12 @@ export default function Home(props) {
         <group >
           <mesh position={[0, -2, 0]} >
             <Plane color="#30303f" scale={[50, 50, 0.2]} />
-            <Plane color="#30303f" wireframe={true} rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
-            <Text />
+            <Plane color="#30303f" rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
             <Physics gravity={[0, -20, 0]}>
               <PhyPlane color='#000000' rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} />
               {/* <PhyPlane color='#000000' rotation={[0, 0, 0]} position={[0, -2, 0]} /> */}
               {/* <Sphere position={[-2, 1, 7]} /> */}
+              <Text />
               <group name="Pyramid">
                 <Pyramid position={[0, 0, 18]} color={'goldenrod'} />
                 <Pyramid position={[2, 0, 16]} color={'goldenrod'} />
@@ -191,8 +206,8 @@ export default function Home(props) {
               </group>
             </Physics>
           </mesh>
-          <Triangle position={[30, 3, -25]} />
-          <Triangle position={[-30, 3, -25]} />
+          {/* <Triangle position={[30, 3, -25]} /> */}
+          {/* <Triangle position={[-30, 3, -25]} /> */}
           {/* <Diamond position={[0, 1, -25]} /> */}
           {/* <Diamond position={[-15, 2, -15]} /> */}
           {/* <Diamond position={[25, 0, -15]} /> */}
