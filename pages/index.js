@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Vector3 } from 'three'
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { useState, useRef, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useCursor, RoundedBox, Html, GradientTexture, Shadow, Center, Stats, Points, PointMaterial, useCubeTexture, useTexture, SpotLight, useDepthBuffer, KeyboardControls } from '@react-three/drei'
+import { useTurntable, OrbitControls, Image, useCursor, RoundedBox, Html, GradientTexture, Shadow, Center, Stats, Points, PointMaterial, useCubeTexture, useTexture, SpotLight, useDepthBuffer, KeyboardControls } from '@react-three/drei'
 import { Physics, useBox, usePlane } from "@react-three/cannon";
 import { useControls } from 'leva';
 import inter from "../public/Inter_Regular.json";
@@ -29,6 +28,28 @@ const Plane = ({ color, ...props }) => {
       <RoundedBox smoothness={10} radius={0.015} {...props}>
         <meshStandardMaterial color={color} envMapIntensity={1} roughness={1} metalness={1} />
       </RoundedBox>
+    </>
+  );
+};
+const Tile = ({ url, title, ...props }) => {
+  // const [ref] = usePlane(() => ({ ...props }));
+  const occluderRef = useRef()
+
+  return (
+    <>
+      {/* <Plane attach="geometry" args={[100, 100]} /> */}
+      <group>
+        <RoundedBox ref={occluderRef} smoothness={10} radius={0.015} {...props}>
+          <meshBasicMaterial color={'black'} />
+          <Image position={[0, 0, 0.7]} url={url} scale={[0.9, 0.9]} />
+          <Html transform position={[0, 0, -5]} style={{ fontSize: '1px' }}>
+            <a href='https://planets-gilt.vercel.app/'>
+              <div className='w-30 h-30 flex justify-center items-center'>
+                <div className='p-2 opacity-0 hover:opacity-100 duration-200 text-sm text-white' style={{ fontSize: '3px' }} >{title}</div>
+              </div>
+            </a></Html>
+        </RoundedBox>
+      </group>
     </>
   );
 };
@@ -101,6 +122,8 @@ export default function Home(props) {
   return (
     <>
       <Canvas shadows camera={{ position: [-2, 5, 25], fov: 50 }} >
+
+        {/* Info wall gradient */}
         <mesh position={[0, 0, -1]} rotation={[0, 9.40, 0]} scale={50}>
           <planeGeometry />
           <meshBasicMaterial metalness={1} reflectivity={1}>
@@ -111,15 +134,18 @@ export default function Home(props) {
             />
           </meshBasicMaterial>
         </mesh>
+        {/* Info wall gradient */}
         <PC castShadow scale={0.5} position={[-15, 3, -7]} rotation={[0, 11, 0]} />
         <Shelf castShadow position={[26, -4, 2]} rotation={[0, Math.PI * 3, 0]} />
         <Football scale={0.05} position={[-10, -2.5, -4]} />
+
+
         {/* <Scene /> */}
-        {/* <gridHelper args={args} position={[0, 14, -1]} rotation={[Math.PI / 2, 0, 0]} height={50} /> */}
+
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         {/* <ambientLight intensity={1} color={"yellow"} /> */}
         <pointLight position={[-10, 5, -15]} intensity={1} castShadow />
-        <pointLight position={[0, -10, 0]} intensity={1.5} castShadow color='goldenrod' />
+        {/* <pointLight position={[0, -10, 0]} intensity={1.5} castShadow color='goldenrod' /> */}
         {/* <ambientLight /> */}
         <pointLight position={[-3, -3, 2]} />
 
@@ -135,6 +161,17 @@ export default function Home(props) {
           castShadow
         /> */}
 
+        <Tile position={[0, -6, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/Planets.jpg'} title={'PLANETS'} />
+        <Tile position={[10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/spotify_clone.png'} title={'SPOTIFY-CLONE'} />
+        <Tile position={[15, -15, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/ideacon.png'} title={'IDEACON'} />
+        <Tile position={[20, -20, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/doctor_bot.png'} title={'DOCTOR-BOT'} />
+        {/* <Tile position={[25, -25, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]}url={'/terrazo.png'}  /> */}
+        <Tile position={[-10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/news-events.png'} title={'NEWS-EVENTS'} />
+        <Tile position={[-15, -15, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/terrazo.png'} />
+        <Tile position={[-20, -20, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/terrazo.png'} />
+        {/* <Tile position={[-25, -25, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 10, 0.1]} /> */}
+
+        {/* Home page */}
         <Title />
         <Mirror position={[-25, 8, 10]} rotation={[2.1, 2.12, 2]} scale={[10, 10, 0.1]} />
         <Mirror position={[-15, 20, 8]} rotation={[2.1, 8.12, 1]} scale={[9, 9, 0.1]} />
@@ -144,6 +181,7 @@ export default function Home(props) {
         <Mirror position={[12, 6, 11]} rotation={[1.19, 3.78, 3]} scale={[8, 8, 0.2]} />
         <Mirror position={[-8, 6, 10]} rotation={[2.19, 3.78, 2]} scale={[8, 8, 0.2]} />
         <Mirror position={[5, 5, 10]} rotation={[2.19, 6.78, 5]} scale={[6, 6, 0.2]} />
+        {/* Home page */}
 
         <group >
           <mesh position={[0, -2, 0]} >

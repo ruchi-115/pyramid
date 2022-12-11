@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@react-three/drei'
+import { Text, Html } from '@react-three/drei'
 import { useControls } from 'leva'
 function Title() {
     // const { rotation } = useControls({ rotation: [0, 9.40, 0] })
@@ -37,21 +37,22 @@ function Title() {
                 {/* Designer */}
 
             </Text>
-            {/* <Text
-                position={[10, 14, -10]}
+            <Text
+                position={[0, -5, 17]}
                 color={'white'}
-                fontSize={4}
+                fontSize={6}
                 maxWidth={150}
                 lineHeight={1}
                 letterSpacing={0.02}
                 textAlign={'left'}
                 anchorX="center"
                 anchorY="middle"
-                rotation={[0, 9.40, 0]}
+                rotation={[Math.PI / 2, 0, 0]}
             >
-                Writer
 
-            </Text> */}
+                PROJECTS
+
+            </Text>
             {/* <Text
                 position={[-10, 5, -10]}
                 color={'white'}
