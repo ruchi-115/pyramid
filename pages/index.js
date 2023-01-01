@@ -15,7 +15,7 @@ import Shelf from '../components/Shelf';
 import Football from '../components/Football';
 import GradientWall from '../components/GradientWall';
 import Mirrors from '../components/Mirror';
-import Tiles from '../components/TIles';
+import Tiles from '../components/Tiles';
 import PyramidStack from '../components/Pyramid';
 
 const Plane = ({ color, ...props }) => {
