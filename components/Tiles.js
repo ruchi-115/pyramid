@@ -27,12 +27,12 @@ const Tile = ({ url, title, ...props }) => {
 function Tiles() {
     return (
         <>
-            <Tile position={[0, -6, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/Planets.jpg'} title={'PLANETS'} />
-            <Tile position={[10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/spotify_clone.png'} title={'SPOTIFY-CLONE'} />
-            <Tile position={[15, -15, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/ideacon.png'} title={'IDEACON'} />
-            <Tile position={[20, -20, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/doctor_bot.png'} title={'DOCTOR-BOT'} />
-            {/* <Tile position={[25, -25, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]}url={'/terrazo.png'}  /> */}
-            <Tile position={[-10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/news-events.png'} title={'NEWS-EVENTS'} />
+            <Tile position={[0, -6, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/thumbnail/Planets.jpg'} title={'PLANETS'} />
+            <Tile position={[10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/thumbnail/spotify_clone.png'} title={'SPOTIFY-CLONE'} />
+            <Tile position={[15, -15, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/thumbnail/ideacon.png'} title={'IDEACON'} />
+            <Tile position={[20, -20, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/thumbnail/doctor_bot.png'} title={'DOCTOR-BOT'} />
+            {/* <Tile position={[25, -25, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]}url={'/thumbnail/terrazo.png'}  /> */}
+            <Tile position={[-10, -10, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/thumbnail/news-events.png'} title={'NEWS-EVENTS'} />
             <Tile position={[-15, -15, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/terrazo.png'} />
             <Tile position={[-20, -20, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 15, 0.1]} url={'/terrazo.png'} />
             {/* <Tile position={[-25, -25, 7]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 10, 0.1]} /> */}

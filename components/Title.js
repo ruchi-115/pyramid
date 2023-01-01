@@ -2,8 +2,6 @@ import React from 'react'
 import { Text, Html } from '@react-three/drei'
 import { useControls } from 'leva'
 function Title() {
-    // const { rotation } = useControls({ rotation: [0, 9.40, 0] })
-
     return (
         <>
             <Text

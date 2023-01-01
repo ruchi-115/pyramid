@@ -39,82 +39,84 @@ function Info({ position, ...props }) {
   useFrame((state) => {
     // ref.current.rotation.y += 0.01
     // state.camera.position.lerp({ x: 0, y: zoom ? 5 : -120, z: zoom ? 60 : -30 }, 0.03)
-    state.camera.position.lerp({ x: 0, y: 5, z: zoom ? 60 : -200 }, 0.03)
+    state.camera.position.lerp({ x: 0, y: 5, z: zoom ? 60 : -260 }, 0.03)
     state.camera.lookAt(0, 0, 0)
   })
   const font = new FontLoader().parse(inter);
   return (
     <Html position={[0, 200]}
+      className='fs-1 p-3 text-center'
       style={{
-        fontSize: '50px',
-        padding: '10px 18px',
-        top: '60px',
+        fontSize: '40px',
+        top: '15em',
+        left: '6em',
       }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
         INFO</a></Html>
   )
 }
-function Main({ position, ...props }) {
+function Projects({ position, ...props }) {
   const ref = useRef()
   const [active, setActive] = useState(false)
   const [zoom, set] = useState(true)
   useCursor(active)
   useFrame((state) => {
-    state.camera.position.lerp({ x: 0, y: zoom ? 5 : -120, z: zoom ? 60 : -30 }, 0.03)
+    state.camera.position.lerp({ x: 0, y: zoom ? 5 : -150, z: zoom ? 60 : -50 }, 0.03)
     state.camera.lookAt(0, -10, 0)
   })
   const font = new FontLoader().parse(inter);
   return (
     <Html position={[0, 0]}
+      className='fs-1 p-3 text-center'
       style={{
-        fontSize: '50px',
-        padding: '10px 18px',
-        font: 'capitalize',
-      }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
-        HOME</a></Html>
-  )
-}
-
-function Projects(position) {
-  const ref = useRef()
-  const [active, setActive] = useState(false)
-  const [zoom, set] = useState(true)
-  useCursor(active)
-  useFrame((state) => {
-    state.camera.position.lerp({ x: 0, y: zoom ? 10 : 350, z: zoom ? 60 : 200 }, 0.01)
-    state.camera.lookAt(0, 0, 0)
-  })
-  return (
-    <Html position={[0, 0]}
-      style={{
-        fontSize: '50px',
-        padding: '10px 18px',
-        top: '120px',
+        fontSize: '40px',
+        top: '15em',
+        left: '16em',
       }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
         PROJECTS</a></Html>
   )
 }
 
+function Prototypes(position) {
+  const ref = useRef()
+  const [active, setActive] = useState(false)
+  const [zoom, set] = useState(true)
+  useCursor(active)
+  useFrame((state) => {
+    state.camera.position.lerp({ x: 0, y: zoom ? 5 : -120, z: zoom ? 60 : -260 }, 0.03)
+    state.camera.lookAt(0, 0, 0)
+  })
+  return (
+    <Html position={[0, 0]} className='fs-1 p-3 text-center'
+      style={{
+        fontSize: '40px',
+        top: '15em',
+        left: '26em',
+      }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
+        PROTOTYPES</a></Html>
+  )
+}
+
+
 export default function Home(props) {
   const [dpr, setDpr] = useState(1.5)
   return (
     <>
-      <Canvas dpr={dpr} frameloop='demand' shadows camera={{ position: [-2, 5, 25], fov: 50 }} >
-        <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} >
-          {/* <Suspense fallback={null}> */}
-          {/* Info plane */}
-          <GradientWall />
-          <PC castShadow scale={0.5} position={[-15, 3, -7]} rotation={[0, 11, 0]} />
-          <Shelf castShadow position={[26, -4, 2]} rotation={[0, Math.PI * 3, 0]} />
-          <Football scale={0.05} position={[-10, -2.5, -4]} />
-          {/* Info plane */}
+      <Canvas dpr={dpr} frameloop='demand' shadows camera={{ position: [0, 5, 60], fov: 50 }} >
+        {/* <Suspense fallback={null}> */}
+        {/* Info plane */}
+        <GradientWall />
+        <PC castShadow scale={0.5} position={[-15, 3, -7]} rotation={[0, 11, 0]} />
+        <Shelf castShadow position={[26, -4, 2]} rotation={[0, Math.PI * 3, 0]} />
+        <Football scale={0.05} position={[-10, -2.5, -4]} />
+        {/* Info plane */}
 
-          {/* Lights */}
-          <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-          {/* <ambientLight intensity={1} color={"yellow"} /> */}
-          <pointLight position={[-10, 5, -15]} intensity={1} castShadow />
-          {/* <pointLight position={[0, -10, 0]} intensity={1.5} castShadow color='goldenrod' /> */}
-          <pointLight position={[-3, -3, 2]} />
-          {/* <SpotLight
+        {/* Lights */}
+        <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+        {/* <ambientLight intensity={1} color={"yellow"} /> */}
+        <pointLight position={[-10, 5, -15]} intensity={1} castShadow />
+        {/* <pointLight position={[0, -10, 0]} intensity={1.5} castShadow color='goldenrod' /> */}
+        <pointLight position={[-3, -3, 2]} />
+        {/* <SpotLight
           penumbra={0.5}
           position={[3, 2, 0]}
           intensity={0.5}
@@ -122,49 +124,49 @@ export default function Home(props) {
           color="yellow"
           castShadow
         /> */}
-          {/* Lights */}
+        {/* Lights */}
 
 
 
-          {/* Navbar */}
-          {/* Main = home => spin to Projects */}
-          {/* Info = info => through to Info */}
-          {/* Projects = projects => undecided */}
-          <Main position={[0, 5, 5]} />
-          <Info position={[10, 5, 5]} />
-          <Projects />
-          {/* Navbar */}
+        {/* Navbar */}
+        {/* Main = home => spin to Projects */}
+        {/* Info = info => through to Info */}
+        {/* Projects = projects => undecided */}
+        <Projects />
+        <Prototypes />
+        <Info />
+        {/* Navbar */}
 
 
-          {/* Projects plane */}
-          <Tiles />
-          {/* Projects plane */}
+        {/* Projects plane */}
+        <Tiles />
+        {/* Projects plane */}
 
-          {/* Home page */}
-          <Title />
-          <Mirrors />
-          {/* Home page */}
+        {/* Home page */}
+        <Title />
+        <Mirrors />
+        {/* Home page */}
 
-          <group >
-            <mesh position={[0, -2, 0]} >
-              <Plane color="#30303f" scale={[50, 50, 0.2]} />
-              <Plane color="#30303f" rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
-              <Physics gravity={[0, -20, 0]}>
-                <PhyPlane color='#000000' rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} />
-                {/* <PhyPlane color='#000000' rotation={[0, 0, 0]} position={[0, -2, 0]} /> */}
-                {/* <Sphere position={[-2, 1, 7]} /> */}
-                <Text />
-                <PyramidStack />
-              </Physics>
-            </mesh>
-            {/* <Triangle position={[30, 3, -25]} /> */}
-            {/* <Triangle position={[-30, 3, -25]} /> */}
-            {/* <Diamond position={[0, 1, -25]} /> */}
-            {/* <Diamond position={[-15, 2, -15]} /> */}
-            {/* <Diamond position={[25, 0, -15]} /> */}
-          </group>
-          <OrbitControls />
-        </PerformanceMonitor>
+        <group >
+          <mesh position={[0, -2, 0]} >
+            <Plane color="#30303f" scale={[50, 50, 0.2]} />
+            <Plane color="#30303f" rotation-x={-Math.PI / 2} position-y={-2.2} position-z={0} scale={[50, 50, 0.2]} />
+            <Physics gravity={[0, -20, 0]}>
+              <PhyPlane color='#000000' rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} />
+              {/* <PhyPlane color='#000000' rotation={[0, 0, 0]} position={[0, -2, 0]} /> */}
+              {/* <Sphere position={[-2, 1, 7]} /> */}
+              <Text />
+              <PyramidStack />
+            </Physics>
+          </mesh>
+          {/* <Triangle position={[30, 3, -25]} /> */}
+          {/* <Triangle position={[-30, 3, -25]} /> */}
+          {/* <Diamond position={[0, 1, -25]} /> */}
+          {/* <Diamond position={[-15, 2, -15]} /> */}
+          {/* <Diamond position={[25, 0, -15]} /> */}
+        </group>
+        <OrbitControls />
+
         <Stats />
       </Canvas>
       {/* <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate3d(-50%,-50%,0)' }}>
