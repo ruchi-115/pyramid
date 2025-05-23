@@ -50,8 +50,11 @@ function Info({ position, ...props }) {
         fontSize: '40px',
         top: '15em',
         left: '6em',
-      }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
-        INFO</a></Html>
+      }}>
+      <a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
+        INFO
+      </a>
+    </Html>
   )
 }
 function Projects({ position, ...props }) {
@@ -71,8 +74,11 @@ function Projects({ position, ...props }) {
         fontSize: '40px',
         top: '15em',
         left: '16em',
-      }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
-        PROJECTS</a></Html>
+      }}>
+      <a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
+        PROJECTS
+      </a>
+    </Html>
   )
 }
 
@@ -91,8 +97,11 @@ function Prototypes(position) {
         fontSize: '40px',
         top: '15em',
         left: '26em',
-      }}><a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
-        PROTOTYPES</a></Html>
+      }}>
+      <a ref={ref} onClick={() => set(!zoom)} onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)}>
+        PROTOTYPES
+      </a>
+    </Html>
   )
 }
 
@@ -111,10 +120,10 @@ export default function Home(props) {
         {/* Info plane */}
 
         {/* Lights */}
+        <ambientLight intensity={0.7} color="#888" />
+        <directionalLight position={[10, 20, 10]} intensity={1.2} castShadow color="#fff" />
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-        {/* <ambientLight intensity={1} color={"yellow"} /> */}
         <pointLight position={[-10, 5, -15]} intensity={1} castShadow />
-        {/* <pointLight position={[0, -10, 0]} intensity={1.5} castShadow color='goldenrod' /> */}
         <pointLight position={[-3, -3, 2]} />
         {/* <SpotLight
           penumbra={0.5}

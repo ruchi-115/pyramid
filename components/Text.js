@@ -12,7 +12,7 @@ export default function Text() {
     return (
         <>
             <mesh castShadow>
-                <PhyBox text="WRITER" position={[18, 0, -15]} rotation={[0, Math.PI * 3, 0]} size="2" height="0.8" />
+                {/* <PhyBox text="WRITER" position={[18, 0, -15]} rotation={[0, Math.PI * 3, 0]} size="2" height="0.8" /> */}
                 <PhyBox text="DEVELOPER" position={[6, 0, -20]} rotation={[0, Math.PI * 3, 0]} size="2" height="0.8" />
                 <PhyBox text="DESIGNER" position={[-10, 0, -25]} rotation={[0, Math.PI * 3, 0]} size="2" height="0.8" />
 

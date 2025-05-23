@@ -23,13 +23,13 @@ export default function PC(props) {
           </group>
           <mesh castShadow geometry={nodes.Cylinder_Material001_0.geometry} material={materials['Material.001']} />
           <mesh geometry={nodes.Cylinder001_Material001_0.geometry} material={materials['Material.001']} />
-          <mesh geometry={nodes.Cube109_Material003_0.geometry} material={materials['Material.003']} />
+          <mesh geometry={nodes.Cube109_Material003_0.geometry} material={materials['Material.003']} material-emissive="#222244" material-emissiveIntensity={0.5} />
           <mesh geometry={nodes.Sphere__0.geometry} material={materials.Sphere__0} />
           <mesh geometry={nodes.Sphere001__0.geometry} material={materials.Sphere__0} />
           <mesh geometry={nodes.Sphere002__0.geometry} material={materials.Sphere__0} />
           <mesh geometry={nodes.Sphere003__0.geometry} material={materials.Sphere__0} />
           <mesh geometry={nodes.Cube113_Material015_0.geometry} material={materials['Material.015']} />
-          <mesh geometry={nodes.Cube114_Material016_0.geometry} material={materials['Material.016']} />
+          <mesh geometry={nodes.Cube114_Material016_0.geometry} material={materials['Material.016']} material-emissive="#00aaff" material-emissiveIntensity={0.7} />
           <mesh geometry={nodes.Cube116_Material016_0.geometry} material={materials['Material.016']} />
           <mesh geometry={nodes.Cube117_Material016_0.geometry} material={materials['Material.016']} />
           <mesh geometry={nodes.Plane_Material018_0.geometry} material={materials['Material.018']} />

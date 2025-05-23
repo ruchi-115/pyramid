@@ -15,7 +15,7 @@ export default function Work() {
                     <li>HOME | </li>
                     <li>PROTOTYPES | </li>
                     <li>INFO | </li>
-                    <li>ARTICLES </li>
+                    {/* <li>ARTICLES </li> */}
                 </ul>
             </div>
             <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate3d(-50%,-50%,0)' }}>
@@ -28,7 +28,7 @@ export default function Work() {
                 <p className="px-5" style={{ fontSize: '1em', letterSpacing: '0.1em', }}>WORK</p>
                 <p className="px-3" style={{ fontSize: '1em', letterSpacing: '0.1em', }}>INFO</p>
                 <p className="px-3" style={{ fontSize: '1em', letterSpacing: '0.1em', }}>PROTOTYPES</p>
-                <p className="px-3" style={{ fontSize: '1em', letterSpacing: '0.1em', }}>ARTICLES</p>
+                {/* <p className="px-3" style={{ fontSize: '1em', letterSpacing: '0.1em', }}>ARTICLES</p> */}
             </div>
 
         </>
